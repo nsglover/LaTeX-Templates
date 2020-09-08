@@ -1,0 +1,244 @@
+%This is free and unencumbered software released into the public domain.
+%
+%Anyone is free to copy, modify, publish, use, compile, sell, or
+%distribute this software, either in source code form or as a compiled
+%binary, for any purpose, commercial or non-commercial, and by any
+%means.
+%
+%In jurisdictions that recognize copyright laws, the author or authors
+%of this software dedicate any and all copyright interest in the
+%software to the public domain. We make this dedication for the benefit
+%of the public at large and to the detriment of our heirs and
+%successors. We intend this dedication to be an overt act of
+%relinquishment in perpetuity of all present and future rights to this
+%software under copyright law.
+%
+%THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+%EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+%MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+%IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+%OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+%ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+%OTHER DEALINGS IN THE SOFTWARE.
+%
+%For more information, please refer to <https://unlicense.org>\documentclass{article}
+
+\documentclass{article}
+
+% Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{ifthen}
+\usepackage{etoolbox}
+
+% Document setup
+\geometry{letterpaper, margin=2cm, tmargin=2.5cm, bmargin=2.5cm, headsep=12pt,headheight=12pt,footskip=40pt}
+
+% Custom label command for better references
+\makeatletter
+\newcommand{\customlabel}[2]{\protected@edef\@currentlabel{#2}\label{#1}}
+\makeatother
+
+% The addendum, problem, and subproblem environments
+\newcommand{\footerenvironment}{}
+
+\newcounter{addendum}
+\newenvironment{addendum}[1][]
+{
+\par\refstepcounter{addendum}
+\renewcommand{\footerenvironment}{\ (#1)}
+\addcontentsline{toc}{section}{#1}
+{\Large \begin{center}{\textbf{#1}}\end{center}} \hrule \vspace{12pt}
+}
+{\newpage}
+
+\newcounter{subaddendum}
+\newenvironment{subaddendum}[1][]
+{
+\vspace{12pt}
+\par\refstepcounter{subaddendum}
+\addcontentsline{toc}{subsection}{#1}
+\underline{#1:}
+\vspace{6pt}
+
+}
+
+\newcounter{problem}
+\newenvironment{problem}[1][]
+{
+\renewcommand{\footerenvironment}{\ (Problem \theproblem)}
+\par\refstepcounter{problem}\label{problem:\theproblem}
+
+\protect\ifthenelse{ \equal{#1}{} }
+      {\addcontentsline{toc}{section}{Problem \theproblem}}
+      {\addcontentsline{toc}{section}{Problem \theproblem:\ #1}}
+
+\protect\ifthenelse{ \equal{#1}{} }
+      {{\Large \begin{center}{\textbf{Problem \theproblem}}\end{center}} \hrule \vspace{6pt}}
+      {{\Large \begin{center}{\textbf{Problem \theproblem:\ #1}}\end{center}} \hrule \vspace{6pt}}
+}
+{\newpage}
+
+\newcounter{subproblem}[problem]
+\newenvironment{subproblem}[1][]
+{
+\vspace{12pt}
+\par\refstepcounter{subproblem}\customlabel{problem:\theproblem\alph{subproblem}}{\alph{subproblem}}
+
+\protect\ifthenelse{ \equal{#1}{} }
+      {\addcontentsline{toc}{subsection}{Part (\alph{subproblem})}}
+      {\addcontentsline{toc}{subsection}{Part (\alph{subproblem}) - #1}}
+
+\protect\ifthenelse{ \equal{#1}{} }
+      {\underline{Part (\alph{subproblem}):}}
+      {\underline{Part (\alph{subproblem}) - #1:}}
+\vspace{6pt}
+
+}
+
+% Header setup
+\frenchspacing
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\fancyplain{}{Homework \homeworknum\ Solutions}}
+\rhead{\fancyplain{}{\name\ (\andrewid)}}
+\chead{\fancyplain{}{\coursenum\ (\semester,\ Section \sectionletter)}}
+\cfoot{Page \thepage\footerenvironment}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Page setup
+
+\newcommand{\firstpage}{
+\thispagestyle{plain}
+\pagenumbering{gobble}
+\begin{center}
+{\huge \coursenum\ \coursename} \\\vspace{6pt}
+{\huge \semester,\ Section \sectionletter} \\\vspace{12pt}
+{\Large Homework \homeworknum\ Solutions} \\\vspace{12pt}
+{\large \name\ (\andrewid)}
+\end{center}
+\tableofcontents\newpage\pagenumbering{arabic}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    BEGIN CUSTOM COMMANDS    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{claim}{Claim}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+\AtBeginEnvironment{proof}{\setcounter{case}{0}}
+
+% Miscellaneous math commands
+\newcommand{\op}{\operatorname}
+
+% Set commands
+\newcommand{\Zset}{\mathbb{Z}}
+\newcommand{\Rset}{\mathbb{R}}
+\newcommand{\Nset}{\mathbb{N}}
+\newcommand{\Qset}{\mathbb{Q}}
+\newcommand{\Cset}{\mathbb{C}}
+\newcommand{\setbuilder}[2]{\left\{#1 \::\: #2 \right\}}
+
+% Probability commands
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\ex}{\mathbb{E}}
+
+% Vector commands
+\newcommand{\inprod}[2]{\left< #1,#2\right>}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+
+% Calculus commands
+\newcommand{\diff}[1]{\, d#1}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%      END CUSTOM COMMANDS     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Header values (edit these!)
+\newcommand{\name}{StudentName}
+\newcommand{\andrewid}{StudentID}
+\newcommand{\semester}{Semester}
+\newcommand{\coursenum}{CourseID}
+\newcommand{\coursename}{CourseName}
+\newcommand{\sectionletter}{X}
+\newcommand{\homeworknum}{N}
+
+%The homework document
+\begin{document}
+\firstpage
+
+%%%%%%%%%%%%%%%%%%%
+%%%    BEGIN HOMEWORK    %%%
+%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Example]
+
+This is a sample problem to briefly showcase the features of this template. 
+
+\begin{note}
+The problem title (``Example'' in this case) is optional.
+\end{note}
+
+\begin{remark}
+Feel free to edit anything and everything above to suit your needs.
+\end{remark}
+
+\begin{subproblem}
+\begin{claim}
+There exists a means to reference any existing problem or subproblem.
+\end{claim}
+
+\begin{proof}
+To reference a whole problem, write \hyperref[problem:1]{something like this}, and to reference a specific part, try \hyperref[problem:1a]{this}.
+\end{proof}
+\end{subproblem}
+
+\begin{subproblem}[More Subproblems]
+You can add as many subproblems as you want within each problem environment. Note the optional title.
+\end{subproblem}
+
+\begin{subaddendum}[Sub-Addendums]
+You can use the ``subaddendum'' environment to have full control over subsection title.
+\end{subaddendum}
+\end{problem}
+
+\begin{problem}
+
+Each problem starts on a new page.
+
+\end{problem}
+
+\begin{addendum}[Shortcuts]
+
+The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}\norm{X}_3$, $\Rset$, $\setbuilder{n \in \Nset}{n \text{ is prime}}$, and more.
+
+\end{addendum}
+
+%%%%%%%%%%%%%%%%%%%
+%%%     END HOMEWORK      %%%
+%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
