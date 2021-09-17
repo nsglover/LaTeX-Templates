@@ -1,29 +1,9 @@
-%This is free and unencumbered software released into the public domain.
-%
-%Anyone is free to copy, modify, publish, use, compile, sell, or
-%distribute this software, either in source code form or as a compiled
-%binary, for any purpose, commercial or non-commercial, and by any
-%means.
-%
-%In jurisdictions that recognize copyright laws, the author or authors
-%of this software dedicate any and all copyright interest in the
-%software to the public domain. We make this dedication for the benefit
-%of the public at large and to the detriment of our heirs and
-%successors. We intend this dedication to be an overt act of
-%relinquishment in perpetuity of all present and future rights to this
-%software under copyright law.
-%
-%THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-%EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-%MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-%IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-%OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-%ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-%OTHER DEALINGS IN THE SOFTWARE.
-%
-%For more information, please refer to <https://unlicense.org>
-
 \documentclass{article}
+
+%%%%%%%%%%%%%%%%%%
+%  KNOWN ISSUES  %
+%%%%%%%%%%%%%%%%%%
+% 1. Table of contents does not do well when it becomes longer than one page
 
 % Packages
 \usepackage{amsfonts}
@@ -110,7 +90,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\fancyplain{}{Homework \homeworknum\ Solutions}}
-\rhead{\fancyplain{}{\name\ (\andrewid)}}
+\rhead{\fancyplain{}{\name\ (\studentid)}}
 \chead{\fancyplain{}{\coursenum\ (\semester,\ Section \sectionletter)}}
 \cfoot{Page \thepage\footerenvironment}
 \renewcommand{\headrulewidth}{1pt}
@@ -125,14 +105,14 @@
 {\huge \coursenum\ \coursename} \\\vspace{6pt}
 {\huge \semester,\ Section \sectionletter} \\\vspace{12pt}
 {\Large Homework \homeworknum\ Solutions} \\\vspace{12pt}
-{\large \name\ (\andrewid)}
+{\large \name\ (\studentid)}
 \end{center}
 \tableofcontents\newpage\pagenumbering{arabic}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    BEGIN CUSTOM COMMANDS    %%%
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Theorem environments
 \theoremstyle{plain}
@@ -153,6 +133,7 @@
 \newcommand{\op}{\operatorname}
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\mbb}{\mathbb}
 
 % Set commands
 \renewcommand{\emptyset}{\varnothing}
@@ -163,10 +144,6 @@
 \newcommand{\Cset}{\mathbb{C}}
 \newcommand{\setbuilder}[2]{\left\{#1 : #2 \right\}}
 
-% Probability commands
-\newcommand{\pr}{\mathbb{P}}
-\newcommand{\ex}{\mathbb{E}}
-
 % Vector commands
 \newcommand{\inprod}[2]{\left< #1,#2\right>}
 \newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
@@ -176,26 +153,26 @@
 \newcommand{\deriv}[2]{\frac{d#1}{d#2}}
 \newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%      END CUSTOM COMMANDS     %%%
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Header values (edit these!)
-\newcommand{\name}{StudentName}
-\newcommand{\andrewid}{StudentID}
+\newcommand{\name}{Name}
+\newcommand{\studentid}{Student ID}
 \newcommand{\semester}{Semester}
-\newcommand{\coursenum}{CourseID}
-\newcommand{\coursename}{CourseName}
-\newcommand{\sectionletter}{X}
-\newcommand{\homeworknum}{N}
+\newcommand{\coursenum}{00-000}
+\newcommand{\coursename}{Course Name}
+\newcommand{\sectionletter}{0}
+\newcommand{\homeworknum}{0}
 
 %The homework document
 \begin{document}
 \firstpage
 
-%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    BEGIN HOMEWORK    %%%
-%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{problem}[Example]
 
@@ -236,13 +213,13 @@ Each problem starts on a new page.
 
 \begin{addendum}[Shortcuts]
 
-The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}\norm{X}_3$, $\Rset$, $\setbuilder{n \in \Nset}{n \text{ is prime}}$, and more.
+The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}$, $\norm{X}$, $\Cset$, $\setbuilder{n \in \Nset}{n \text{ is prime}}$, and more.
 
 \end{addendum}
 
-%%%%%%%%%%%%%%%%%%%
-%%%     END HOMEWORK      %%%
-%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     END HOMEWORK     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
 
