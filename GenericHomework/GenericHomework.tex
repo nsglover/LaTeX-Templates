@@ -5,17 +5,15 @@
 %%%%%%%%%%%%%%%%%%
 % 1. Table of contents does not do well when it becomes longer than one page
 
-% Packages
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage{enumerate}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{fancyhdr}
+
+
+%%%%%%%%%%%%%%%%%%
+% TEMPLATE SETUP %
+%%%%%%%%%%%%%%%%%%
+
+% Setup packages
 \usepackage{geometry}
+\usepackage{fancyhdr}
 \usepackage{ifthen}
 \usepackage{etoolbox}
 
@@ -89,7 +87,7 @@
 \setlength{\parindent}{0pt}
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\fancyplain{}{Homework \homeworknum\ Solutions}}
+\lhead{\fancyplain{}{Homework \homeworknum\ }}
 \rhead{\fancyplain{}{\name\ (\studentid)}}
 \chead{\fancyplain{}{\coursenum\ (\semester,\ Section \sectionletter)}}
 \cfoot{Page \thepage\footerenvironment}
@@ -104,75 +102,137 @@
 \begin{center}
 {\huge \coursenum\ \coursename} \\\vspace{6pt}
 {\huge \semester,\ Section \sectionletter} \\\vspace{12pt}
-{\Large Homework \homeworknum\ Solutions} \\\vspace{12pt}
+{\Large Homework \homeworknum\ } \\\vspace{12pt}
 {\large \name\ (\studentid)}
 \end{center}
 \tableofcontents\newpage\pagenumbering{arabic}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%    BEGIN CUSTOM COMMANDS    %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Theorem environments
+
+%%%%%%%%%%%%%%%%%%%%%%
+% MISC UTILITY SETUP %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor={blue!67!red},
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MATH ENVIRONMENT SETUP %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsthm}
+
+% Proof environment modifications
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% Plain theorem environments
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
-\newtheorem{claim}{Claim}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[problem]
+\newtheorem{lemma}{Lemma}[problem]
+\newtheorem{proposition}{Proposition}[problem]
+\newtheorem{conjecture}{Conjecture}[problem]
 
+% Definition theorem environments
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}{Definition}[problem]
+\newtheorem*{example}{Example}
 
+% Remark theorem environments
 \theoremstyle{remark}
+\newtheorem{claim}{Claim}[problem]
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
 \newtheorem{case}{Case}
 \AtBeginEnvironment{proof}{\setcounter{case}{0}}
 
-% Miscellaneous math commands
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+% MATH UTILITY SETUP %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Font commands
+\newcommand{\mbf}{\mathbf}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mcal}{\mathcal}
+\newcommand{\mfrak}{\mathfrak}
+\newcommand{\msf}{\mathsf}
+
+% Set-builder notation commands
+\newcommand{\setb}[2]{\left\{#1 \ : \ #2 \right\}}
+\newcommand{\setbsep}{\ ;\; \ }
+
+% Common set commands
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bC}{\mathbb{C}} 
+
+% General operator commands
 \newcommand{\op}{\operatorname}
+\newcommand{\parens}[1]{\left( #1 \right)}
+\newcommand{\brackets}[1]{\left[ #1 \right]}
+
+% Common notation commands
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
-\newcommand{\mbb}{\mathbb}
-
-% Set commands
-\renewcommand{\emptyset}{\varnothing}
-\newcommand{\Zset}{\mathbb{Z}}
-\newcommand{\Rset}{\mathbb{R}}
-\newcommand{\Nset}{\mathbb{N}}
-\newcommand{\Qset}{\mathbb{Q}}
-\newcommand{\Cset}{\mathbb{C}}
-\newcommand{\setbuilder}[2]{\left\{#1 : #2 \right\}}
-
-% Vector commands
 \newcommand{\inprod}[2]{\left< #1,#2\right>}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
 \newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
-
-% Calculus commands
-\newcommand{\diff}[1]{\, d#1}
 \newcommand{\deriv}[2]{\frac{d#1}{d#2}}
 \newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\intrange}[4]{\int_{#1}^2 #3 \, d#4}
+\newcommand{\intset}[3]{\int_{#1} #2 \, d#3}
+\newcommand{\intindef}[2]{\int #1 \, d#2}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%      END CUSTOM COMMANDS     %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Header values (edit these!)
+
+%%%%%%%%%%%%%%%%%%%%%%
+% CODE UTILITY SETUP %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{listings-ext}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HEADER INFORMATION (EDIT THIS) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand{\name}{Name}
 \newcommand{\studentid}{Student ID}
 \newcommand{\semester}{Semester}
 \newcommand{\coursenum}{00-000}
 \newcommand{\coursename}{Course Name}
-\newcommand{\sectionletter}{0}
+\newcommand{\sectionletter}{X}
 \newcommand{\homeworknum}{0}
+
+
 
 %The homework document
 \begin{document}
 \firstpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%    BEGIN HOMEWORK    %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+% BEGIN HOMEWORK %
+%%%%%%%%%%%%%%%%%%
 
 \begin{problem}[Example]
 
@@ -187,9 +247,9 @@ Feel free to edit anything and everything above to suit your needs.
 \end{remark}
 
 \begin{subproblem}
-\begin{claim}
+\begin{theorem}
 There exists a means to reference any existing problem or subproblem.
-\end{claim}
+\end{theorem}
 
 \begin{proof}
 To reference a whole problem, write \hyperref[problem:1]{something like this}, and to reference a specific part, try \hyperref[problem:1a]{this}.
@@ -205,6 +265,8 @@ You can use the ``subaddendum'' environment to have full control over subsection
 \end{subaddendum}
 \end{problem}
 
+
+
 \begin{problem}
 
 Each problem starts on a new page.
@@ -213,13 +275,16 @@ Each problem starts on a new page.
 
 \begin{addendum}[Shortcuts]
 
-The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}$, $\norm{X}$, $\Cset$, $\setbuilder{n \in \Nset}{n \text{ is prime}}$, and more.
+
+The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}$, $\norm{X}$, $\bC$, $\setb{n \in \bN}{n \text{ is prime}}$, and more.
+
+
 
 \end{addendum}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%     END HOMEWORK     %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% END HOMEWORK %
+%%%%%%%%%%%%%%%%
 
 \end{document}
 
