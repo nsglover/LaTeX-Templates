@@ -1,13 +1,6 @@
 \documentclass{article}
 
 %%%%%%%%%%%%%%%%%%
-%  KNOWN ISSUES  %
-%%%%%%%%%%%%%%%%%%
-% 1. Table of contents does not do well when it becomes longer than one page
-
-
-
-%%%%%%%%%%%%%%%%%%
 % TEMPLATE SETUP %
 %%%%%%%%%%%%%%%%%%
 
@@ -82,7 +75,20 @@
 
 }
 
-% Header setup
+% Header, table of contents, and page setup
+
+\newcommand{\tocsetup}{
+\pagestyle{plain}
+\pagenumbering{gobble}
+\begin{center}
+{\huge \coursenum\ \coursename} \\\vspace{6pt}
+{\huge \semester,\ Section \sectionletter} \\\vspace{12pt}
+{\Large Homework \homeworknum\ } \\\vspace{12pt}
+{\large \name\ (\studentid)}
+\end{center}
+\tableofcontents
+\newpage
+
 \frenchspacing
 \setlength{\parindent}{0pt}
 \pagestyle{fancy}
@@ -93,19 +99,7 @@
 \cfoot{Page \thepage\footerenvironment}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0.5pt}
-
-% Page setup
-
-\newcommand{\firstpage}{
-\thispagestyle{plain}
-\pagenumbering{gobble}
-\begin{center}
-{\huge \coursenum\ \coursename} \\\vspace{6pt}
-{\huge \semester,\ Section \sectionletter} \\\vspace{12pt}
-{\Large Homework \homeworknum\ } \\\vspace{12pt}
-{\large \name\ (\studentid)}
-\end{center}
-\tableofcontents\newpage\pagenumbering{arabic}
+\pagenumbering{arabic}
 }
 
 
@@ -212,6 +206,24 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GRAPHICS UTILITY SETUP %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{tikz}
+% \usepackage{tikz-cd}
+
+
+
+%%%%%%%%%%%%
+% AMONG US %
+%%%%%%%%%%%%
+
+% \usepackage{tikz-among-us}
+% \usepackage{tikz-among-us-fancyhdr}
+% \usepackage{tikz-among-us-watermark-eso-pic}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADER INFORMATION (EDIT THIS) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -228,7 +240,7 @@
 
 %The homework document
 \begin{document}
-\firstpage
+\tocsetup
 
 %%%%%%%%%%%%%%%%%%
 % BEGIN HOMEWORK %
