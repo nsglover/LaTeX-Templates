@@ -175,11 +175,11 @@
 
 % Common set commands
 \renewcommand{\emptyset}{\varnothing}
-\newcommand{\bZ}{\mathbb{Z}}
-\newcommand{\bR}{\mathbb{R}}
-\newcommand{\bN}{\mathbb{N}}
-\newcommand{\bQ}{\mathbb{Q}}
-\newcommand{\bC}{\mathbb{C}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}} 
 
 % General operator commands
 \newcommand{\op}{\operatorname}
@@ -200,12 +200,13 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%
-% CODE UTILITY SETUP %
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%
+% AMONG US %
+%%%%%%%%%%%%
 
-\usepackage{listings}
-\usepackage{listings-ext}
+% \usepackage{tikz-among-us}
+% \usepackage{tikz-among-us-fancyhdr}
+% \usepackage{tikz-among-us-watermark-eso-pic}
 
 
 
@@ -218,13 +219,12 @@
 
 
 
-%%%%%%%%%%%%
-% AMONG US %
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+% CODE UTILITY SETUP %
+%%%%%%%%%%%%%%%%%%%%%%
 
-% \usepackage{tikz-among-us}
-% \usepackage{tikz-among-us-fancyhdr}
-% \usepackage{tikz-among-us-watermark-eso-pic}
+% \usepackage{listings}
+% \usepackage{listings-ext}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -271,14 +271,25 @@ To reference a whole problem, write \hyperref[problem:1]{something like this}, a
 \end{proof}
 \end{subproblem}
 
+
 \begin{subproblem}[More Subproblems]
 You can add as many subproblems as you want within each problem environment. Note the optional title.
 \end{subproblem}
 
+
 \begin{subaddendum}[Sub-Addendums]
 You can use the ``subaddendum'' environment to have full control over subsection title.
 \end{subaddendum}
+
 \end{problem}
+
+
+
+\begin{addendum}[Shortcuts]
+
+The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}$, $\norm{X}$, $\C$, $\setb{n \in \N}{n \text{ is prime}}$, and more.
+
+\end{addendum}
 
 
 
@@ -287,15 +298,6 @@ You can use the ``subaddendum'' environment to have full control over subsection
 Each problem starts on a new page.
 
 \end{problem}
-
-\begin{addendum}[Shortcuts]
-
-
-The addendum environment is a ``problem'' with less autoformatting, similar to the subaddendum environment. There are shortcuts for common mathematical symbols, such as $\pderiv{f}{t}$, $\op{Var}$, $\norm{X}$, $\bC$, $\setb{n \in \bN}{n \text{ is prime}}$, and more.
-
-
-
-\end{addendum}
 
 %%%%%%%%%%%%%%%%
 % END HOMEWORK %
